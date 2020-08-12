@@ -44,7 +44,7 @@ console.log( 'Ежедневный доход составляет: ' + budgetDa
 
 let budgetDayTotal = 
       ( budgetDay >= 1200 ) ? console.log( 'У вас высокий уровень дохода' ):
-      ( budgetDay >= 600 && udgetDay < 1200 ) ? console.log( 'У вас средний уровень дохода' ):
+      ( budgetDay >= 600 && budgetDay < 1200 ) ? console.log( 'У вас средний уровень дохода' ):
       ( budgetDay < 600 ) ? console.log( 'К сожалению у вас уровень дохода ниже среднего' ):
       ( budgetDay == 0 ) ? console.log( 'У вас 0' ):
       console.log( 'Что то пошло не так' );
