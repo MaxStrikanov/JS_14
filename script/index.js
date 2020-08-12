@@ -3,48 +3,56 @@ let money = 150000,
     addExpenses = 'Продукты, Комуналка, Ипотека, Машина, Развлечения',
     deposit = true, 
     mission = 5900000, 
-    period = 12;
+    period = 12,
+    budgetDay;
 
-let budgetDay = money / 30;
+money = +prompt( 'Ваш месячный доход?', 150000 );
 
-console.log( typeof money );
-console.log( typeof income );
-console.log( typeof deposit );
-console.log( addExpenses.length );
-console.log( 'Период равен ' + period + ' месяцев и Цель заработать '+ mission + ' рублей' );
-console.log( 'Дневной бюджет: ' + budgetDay + ' рублей' );
-console.log( addExpenses.toLowerCase() );
-console.log( addExpenses.split( ", " ) );
+addExpenses = prompt( 'Перечислите возможные расходы за рассчитываемый период через запятую', 'Продукты, Комуналка, Ипотека, Машина, Развлечения' ).split( ", " );
+console.log(addExpenses);
 
-let question = +prompt( 'Ваш месячный доход?' );
-money = question;
-console.log(  money );
+deposit = confirm( 'Есть ли у вас депозит в банке?');
 
-let question_2 = prompt( 'Перечислите возможные расходы за рассчитываемый период через запятую' );
-addExpenses = question_2;
-console.log(  addExpenses );
+let expenses1 = prompt( 'Введите обязательную статью расходов?', 'Кварплата' );
+let expenses2 = prompt( 'Введите обязательную статью расходов?', 'Продукты' );
+let amount1 = +prompt( 'Во сколько это обойдется?', 20000 );
+let amount2 = +prompt( 'Во сколько это обойдется?', 10000 );  
 
-let question_3 = confirm( 'Есть ли у вас депозит в банке?');
-deposit = question_3;
-console.log(  deposit  );
+const getExpensesMonth = () => {
+    return amount1 + amount2;            
+};
 
-let expenses1 = prompt( 'Введите обязательную статью расходов?' );
-let expenses2 = prompt( 'Введите обязательную статью расходов?' );
-let amount1 = +prompt( 'Во сколько это обойдется?' );
-let amount2 = +prompt( 'Во сколько это обойдется?' );  
 
-let budgetMonth;
-budgetMonth = money - (amount1 + amount2);
+const getAccumulatedMonth = () => {
+      return money - ( amount1 + amount2 );           
+};
 
-console.log( 'Итого с учетом всех расходов: ' + budgetMonth );
-console.log( 'Цель будет достигнута через: ' + Math.round( mission / budgetMonth ) + ' мес.');
+let accumulatedMonth = getAccumulatedMonth();
 
-budgetDay = Math.floor( budgetMonth / 30 )
-console.log( 'Ежедневный доход составляет: ' + budgetDay + ' руб.');
+const getTargetMonth = () => {
+      return Math.round( mission / accumulatedMonth );     
+};
 
-let budgetDayTotal = 
-      ( budgetDay >= 1200 ) ? console.log( 'У вас высокий уровень дохода' ):
-      ( budgetDay >= 600 && budgetDay < 1200 ) ? console.log( 'У вас средний уровень дохода' ):
-      ( budgetDay < 600 ) ? console.log( 'К сожалению у вас уровень дохода ниже среднего' ):
-      ( budgetDay == 0 ) ? console.log( 'У вас 0' ):
-      console.log( 'Что то пошло не так' );
+budgetDay = accumulatedMonth / 30;
+
+let showTypeOf = ( data ) => {
+      console.log( data, typeof(data) );
+};
+
+showTypeOf( money );
+showTypeOf( income );
+showTypeOf( deposit );
+
+const getStatusIncome = () => {
+      let budgetDayTotal = 
+            ( budgetDay >= 1200 ) ? console.log( 'У вас высокий уровень дохода' ):
+            ( budgetDay >= 600 && budgetDay < 1200 ) ? console.log( 'У вас средний уровень дохода' ):
+            ( budgetDay < 600 ) ? console.log( 'К сожалению у вас уровень дохода ниже среднего' ):
+            ( budgetDay == 0 ) ? console.log( 'У вас 0' ):
+            console.log( 'Что то пошло не так' );
+      };
+      
+console.log( 'Cрок достижения цели: ' +getTargetMonth() +' мес.' );
+console.log( 'Расходы за месяц: ' + getExpensesMonth() +' руб.' );
+console.log( 'Бюджет на день: ' + budgetDay );      
+getStatusIncome();
