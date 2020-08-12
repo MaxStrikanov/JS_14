@@ -20,16 +20,16 @@ let question = +prompt( 'Ваш месячный доход?' );
 money = question;
 console.log(  money );
 
-// let question_2 = prompt( 'Перечислите возможные расходы за рассчитываемый период через запятую' );
-// addExpenses = question_2;
-// console.log(  addExpenses );
+let question_2 = prompt( 'Перечислите возможные расходы за рассчитываемый период через запятую' );
+addExpenses = question_2;
+console.log(  addExpenses );
 
-// let question_3 = confirm( 'Есть ли у вас депозит в банке?');
-// deposit = question_3;
-// console.log(  deposit  );
+let question_3 = confirm( 'Есть ли у вас депозит в банке?');
+deposit = question_3;
+console.log(  deposit  );
 
-// let expenses1 = prompt( 'Введите обязательную статью расходов?' );
-// let expenses2 = prompt( 'Введите обязательную статью расходов?' );
+let expenses1 = prompt( 'Введите обязательную статью расходов?' );
+let expenses2 = prompt( 'Введите обязательную статью расходов?' );
 let amount1 = +prompt( 'Во сколько это обойдется?' );
 let amount2 = +prompt( 'Во сколько это обойдется?' );  
 
