@@ -16,21 +16,18 @@ console.log( 'Дневной бюджет: ' + budgetDay + ' рублей' );
 console.log( addExpenses.toLowerCase() );
 console.log( addExpenses.split( ", " ) );
 
-let question = +prompt( 'Ваш месячный доход?' );
-money = question;
+let money = +prompt( 'Ваш месячный доход?' );
 console.log(  money );
 
-let question_2 = prompt( 'Перечислите возможные расходы за рассчитываемый период через запятую' );
-addExpenses = question_2;
+let addExpenses = prompt( 'Перечислите возможные расходы за рассчитываемый период через запятую' );
 console.log(  addExpenses );
 
-let question_3 = confirm( 'Есть ли у вас депозит в банке?');
-deposit = question_3;
+let deposit = confirm( 'Есть ли у вас депозит в банке?');
 console.log(  deposit  );
 
 let expenses1 = prompt( 'Введите обязательную статью расходов?' );
-let expenses2 = prompt( 'Введите обязательную статью расходов?' );
 let amount1 = +prompt( 'Во сколько это обойдется?' );
+let expenses2 = prompt( 'Введите обязательную статью расходов?' );
 let amount2 = +prompt( 'Во сколько это обойдется?' );  
 
 let budgetMonth;
