@@ -31,16 +31,22 @@ const getExpensesMonth = () => {
       let sum = 0;
 
       for ( let i = 0; i < 2; i++ ) {
-            
+
+            let questionHowMuch = 'Во сколько это обойдется?';
+
             expenses[i] = prompt( 'Введите обязательную статью расходов?' );
-            sum = prompt( 'Во сколько это обойдется?' );  
-            
-            while ( !isNumber( sum ) ) {
-                  sum += prompt( 'Во сколько это обойдется?' );   
-            }           
+
+            do {
+                  sum = prompt(questionHowMuch);  
+            }
+            while ( !isNumber( sum ) ) 
+
+            sum = +sum + +sum;
+             
       } 
+
       console.log(expenses);
-      return sum; 
+      return +sum; 
        
 };
 
