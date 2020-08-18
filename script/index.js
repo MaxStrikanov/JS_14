@@ -95,9 +95,3 @@ appData.getTargetMonth();
 appData.statusIncome();
 
 console.log(appData);
-
-// for (let value in appData) {
-
-//   console.log("Свойство:  " + value + " Значение: " + appData.value);
-
-// }  
