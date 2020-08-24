@@ -9,18 +9,16 @@ const isString = (value) => {
   
   if (value !== null && value.trim().length > 0){
     if(!isNumber(value)){
-      return true;
-    }else {
       return false;
+    }else {
+      return true;
     }
   }else {
     return false; 
   }
 
 }
-console.log(isString('9'));
-console.log(isString('  qwerty  '));
-console.log(isString(null));
+
 let money;
 
 const start = () => {
@@ -39,6 +37,8 @@ let appData = {
   expenses: {},
   addExpenses: [],
   deposit: false,
+  persentDeposit: 0,
+  moneyDeposit: 0,
   mission: 5900000,
   period: 3,
   budgetDay: 0,
@@ -49,6 +49,28 @@ let appData = {
     // let addExpenses = prompt( 'Перечислите возможные расходы за рассчитываемый период через запятую' );
     // appData.addExpenses = addExpenses.toLocaleLowerCase().split( ", " );
 
+    if ( confirm('Есть ли у вас дополнительный заработок?') ) {
+      let cashIncome, itemIncome;
+
+        do { 
+
+          itemIncome = prompt( 'Какой у вас дополнительный заработок? ', 'Таксую');
+
+        } 
+
+        while ( isString(itemIncome) )
+
+        do {
+
+          cashIncome = prompt( 'Сколько зарабатываете на этом? ', 10000 );
+
+        } 
+
+        while ( !isNumber(cashIncome) || cashIncome === '' || cashIncome === null )
+          
+          appData.income[itemIncome] = cashIncome;
+    }
+
     appData.deposit = confirm('Есть ли у вас депозит в банке?');
 
     let amount;
@@ -56,8 +78,11 @@ let appData = {
 
     for (let i = 0; i < 2; i++) {
 
-      expenses = prompt('Введите обязательную статью расходов?');
-
+      do {
+        expenses = prompt('Введите обязательную статью расходов?');
+      }
+      while ( isString(expenses) || expenses === '' || expenses  === null )
+      
       do {
         amount = prompt('Во сколько это обойдется?');
       }
@@ -97,10 +122,25 @@ let appData = {
   },
   statusIncome: () => {
     (appData.budgetDay >= 1200) ? console.log('У вас высокий уровень дохода') :
-      (appData.budgetDay >= 600 && appData.budgetDay < 1200) ? console.log('У вас средний уровень дохода') :
-        (appData.budgetDay < 600) ? console.log('К сожалению у вас уровень дохода ниже среднего') :
-          (appData.budgetDay == 0) ? console.log('У вас 0') :
-            console.log('Что то пошло не так');
+    (appData.budgetDay >= 600 && appData.budgetDay < 1200) ? console.log('У вас средний уровень дохода') :
+    (appData.budgetDay < 600) ? console.log('К сожалению у вас уровень дохода ниже среднего') :
+    (appData.budgetDay == 0) ? console.log('У вас 0') :
+    console.log('Что то пошло не так');
+  },
+  getInfoDeposit: () => {
+      if(appData.deposit) {
+        do {
+          appData.persentDeposit = prompt('Какой годовой процент?', 10);
+        }
+          while (!isNumber(appData.persentDeposit));
+        do {
+          appData.moneyDeposit = prompt('Какая сумма заложена?', 10000);
+        }
+        while (!isNumber(appData.moneyDeposit));
+      }
+  },
+  calcSavedMoney: () => {
+    return appData.budgetMonth * appData.period;
   }
 
 };
@@ -111,4 +151,10 @@ appData.getBudget();
 appData.getTargetMonth();
 appData.statusIncome();
 
-console.log(appData);
+// console.log(appData);
+appData.getInfoDeposit();
+
+appData.addExpenses = addExpenses.charAt(0).toUppereCase().split('') + addExpenses.slice(1);
+
+console.log(appData.addExpenses);
+console.log(appData.persentDeposit, appData.moneyDeposit, appData.calcSavedMoney() );
